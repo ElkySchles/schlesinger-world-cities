@@ -11,14 +11,13 @@ public class JettyMain {
 
     public static void main(String[] args) throws Exception{
         //Loads the server on port 8080
-        WorldCitiesServlet servlet = new WorldCitiesServlet();
         Server server = new Server();
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(8080);
         server.setConnectors(new Connector[]{connector});
 
         ServletHandler handler = new ServletHandler();
-        handler.addServletWithMapping(WorldCitiesServlet.class, "/definition");
+        handler.addServletWithMapping(WorldCitiesServlet.class, "/worldCities");
         server.setHandler(handler);
 
         server.start();

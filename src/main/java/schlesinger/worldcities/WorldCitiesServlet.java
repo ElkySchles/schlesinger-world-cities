@@ -39,6 +39,7 @@ public class WorldCitiesServlet extends HttpServlet {
         lng1 = Double.parseDouble(lng);
         parser.calculateDistance(lat1, lng1);
         //String definition = dictionary.getDefinition(word);
+
         CityResponse cityResponse = new CityResponse(parser.getCityInfo(), parser.getLatitudeInfo(), parser.getLongitudeInfo());
         resp.setContentType("text/json");
         resp.getWriter().println(gson.toJson(cityResponse));

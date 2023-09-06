@@ -15,6 +15,8 @@ public class CityParser {
     String city;
     double latit;
     double longit;
+    double finalLatit;
+    double finalLongit;
 
     public CSVParser parser;
     //public ArrayList<CSVRecord> allInfo = new ArrayList<CSVRecord>();
@@ -22,7 +24,7 @@ public class CityParser {
 
     public CityParser() throws IOException {
 
-        File csvData = new File("/Users/elkyschlesinger/IdeaProjects/schlesinger-world-cities/src/main/java/schlesinger/worldcities/worldcities.csv");
+        File csvData = new File("src/main/java/schlesinger/worldcities/worldcities.csv");
         parser = CSVParser.parse(csvData, Charset.defaultCharset(), CSVFormat.RFC4180);
 
     }
@@ -33,12 +35,19 @@ public class CityParser {
 
         Iterable<CSVRecord> records = parser.getRecords();
         for (CSVRecord record : records) {
-            latit = Double.parseDouble(record.get(2));
-            longit = Double.parseDouble(record.get(3));
-            double distance = Math.sqrt(((lat - latit) * (lat - latit)) * ((lng - longit) * (lng - longit)));
-            if (distance < minimumDistance) {
-                minimumDistance = distance;
-                city = record.get(0);
+            if (record.get(2).equals("lat")|| record.get(3).equals("lng")) {
+                latit = Double.MAX_VALUE;
+                longit = Double.MAX_VALUE;
+            } else {
+                latit = Double.parseDouble(record.get(2));
+                longit = Double.parseDouble(record.get(3));
+                double distance = Math.sqrt(((lat - latit) * (lat - latit)) * ((lng - longit) * (lng - longit)));
+                if (distance < minimumDistance) {
+                    minimumDistance = distance;
+                    city = record.get(0);
+                    finalLatit = latit;
+                    finalLongit = longit;
+                }
             }
         }
 
@@ -48,10 +57,10 @@ public class CityParser {
             return city;
     }
     public double getLatitudeInfo(){
-        return latit;
+        return finalLatit;
     }
     public double getLongitudeInfo(){
-        return  longit;
+        return  finalLongit;
     }
 
 }

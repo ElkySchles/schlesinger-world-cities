@@ -13,15 +13,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CityParserTest {
     @Test
-    void CityParser() throws IOException {
+    public void calculateDistance() throws IOException {
 
         //given
-        File csvData = new File("/Users/elkyschlesinger/IdeaProjects/schlesinger-world-cities/src/main/java/schlesinger/worldcities/worldcities.csv");
-        CSVParser parser = CSVParser.parse(csvData, Charset.defaultCharset(), CSVFormat.RFC4180);
+
+        CityParser parser = new CityParser();
+        double lat = 39.1886;
+        double lng = -96.6048;
+
         //when
-        String city = parser.getRecords().get(5).get(0);
+        parser.calculateDistance(lat, lng);
+        String city = parser.getCityInfo();
+        Double finalLat = parser.getLatitudeInfo();
+        Double finalLon = parser.getLongitudeInfo();
+
         //then
-        assertEquals("Mumbai", city);
+        assertEquals("Manhattan", city);
+        assertEquals(39.1886 , finalLat);
+        assertEquals(-96.6048, finalLon);
     }
 
 
