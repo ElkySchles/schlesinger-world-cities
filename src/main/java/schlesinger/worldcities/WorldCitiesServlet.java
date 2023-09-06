@@ -14,16 +14,21 @@ public class WorldCitiesServlet extends HttpServlet {
     Double lng1;
     CityParser parser;
 
+    private Gson gson;
 
-    {
-        try {
-            parser = new CityParser();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    //this is used by Jetty
+    public WorldCitiesServlet() throws IOException {
+        this(new CityParser(), new Gson());
     }
 
-    private final Gson gson = new Gson();
+
+    //this is used in tests
+    public WorldCitiesServlet(CityParser parser, Gson gson)
+    {
+        this.gson = gson;
+        this.parser = parser;
+    }
+
 
 
     @Override
