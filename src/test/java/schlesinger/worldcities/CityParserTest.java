@@ -18,8 +18,8 @@ class CityParserTest {
         //given
 
         CityParser parser = new CityParser();
-        double lat = 39.1050;
-        double lng = -96.6200;
+        double lat = 40.7600;
+        double lng = -73.9600;
 
         //when
         parser.calculateDistance(lat, lng);
@@ -29,8 +29,8 @@ class CityParserTest {
 
         //then
         assertEquals("Manhattan", city);
-        assertEquals(39.1886 , finalLat);
-        assertEquals(-96.6048, finalLon);
+        assertEquals(40.7834 , finalLat);
+        assertEquals(-73.9662, finalLon);
     }
 
 
