@@ -29,10 +29,9 @@ class CityParserTest {
 
         //then
         assertEquals("Manhattan", city);
-        assertEquals(40.7834 , finalLat);
+        assertEquals(40.7834, finalLat);
         assertEquals(-73.9662, finalLon);
     }
-
 
 
 }

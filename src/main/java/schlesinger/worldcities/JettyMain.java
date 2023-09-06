@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class JettyMain {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //Loads the server on port 8080
         Server server = new Server();
         ServerConnector connector = new ServerConnector(server);

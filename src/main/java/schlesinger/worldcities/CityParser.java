@@ -23,7 +23,9 @@ public class CityParser {
 
     public CityParser() throws IOException {
 
-        File csvData = new File("src/main/java/schlesinger/worldcities/worldcities.csv");
+        File csvData = new File
+                ("src/main/java/schlesinger" +
+                        "/worldcities/worldcities.csv");
         parser = CSVParser.parse(csvData, Charset.defaultCharset(), CSVFormat.RFC4180);
 
     }
@@ -36,13 +38,14 @@ public class CityParser {
 
         Iterable<CSVRecord> records = parser.getRecords();
         for (CSVRecord record : records) {
-            if (record.get(2).equals("lat")|| record.get(3).equals("lng")) {
+            if (record.get(2).equals("lat") || record.get(3).equals("lng")) {
                 latit = Double.MAX_VALUE;
                 longit = Double.MAX_VALUE;
             } else {
                 latit = Double.parseDouble(record.get(2));
                 longit = Double.parseDouble(record.get(3));
-                double distance = Math.sqrt(((lat - latit) * (lat - latit)) + ((lng - longit) * (lng - longit)));
+                double distance =
+                        Math.sqrt(((lat - latit) * (lat - latit)) + ((lng - longit) * (lng - longit)));
                 if (distance < minimumDistance) {
                     minimumDistance = distance;
                     city = record.get(0);
@@ -55,13 +58,15 @@ public class CityParser {
     }
 
     public String getCityInfo() {
-            return city;
+        return city;
     }
-    public double getLatitudeInfo(){
+
+    public double getLatitudeInfo() {
         return finalLatit;
     }
-    public double getLongitudeInfo(){
-        return  finalLongit;
+
+    public double getLongitudeInfo() {
+        return finalLongit;
     }
 
 }

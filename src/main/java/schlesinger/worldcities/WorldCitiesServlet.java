@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Console;
 import java.io.IOException;
+
 public class WorldCitiesServlet extends HttpServlet {
     Double lat1;
     Double lng1;
@@ -25,7 +26,6 @@ public class WorldCitiesServlet extends HttpServlet {
     private final Gson gson = new Gson();
 
 
-
     @Override
     protected void doGet(
             HttpServletRequest req,
@@ -40,7 +40,8 @@ public class WorldCitiesServlet extends HttpServlet {
         parser.calculateDistance(lat1, lng1);
         //String definition = dictionary.getDefinition(word);
 
-        CityResponse cityResponse = new CityResponse(parser.getCityInfo(), parser.getLatitudeInfo(), parser.getLongitudeInfo());
+        CityResponse cityResponse = new CityResponse
+                (parser.getCityInfo(), parser.getLatitudeInfo(), parser.getLongitudeInfo());
         resp.setContentType("text/json");
         resp.getWriter().println(gson.toJson(cityResponse));
 
