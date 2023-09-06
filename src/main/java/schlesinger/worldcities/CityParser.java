@@ -13,8 +13,7 @@ public class CityParser {
 
 
     String city;
-    double latit;
-    double longit;
+
     double finalLatit;
     double finalLongit;
 
@@ -30,6 +29,8 @@ public class CityParser {
     }
 
     public void calculateDistance(double lat, double lng) {
+        double latit;
+        double longit;
 
         double minimumDistance = Double.MAX_VALUE;
 

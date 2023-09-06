@@ -18,8 +18,8 @@ class CityParserTest {
         //given
 
         CityParser parser = new CityParser();
-        double lat = 39.1886;
-        double lng = -96.6048;
+        double lat = 39.1050;
+        double lng = -96.6200;
 
         //when
         parser.calculateDistance(lat, lng);

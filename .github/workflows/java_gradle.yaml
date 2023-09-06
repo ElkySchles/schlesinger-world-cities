@@ -27,7 +27,7 @@
             reporter: github-pr-review
             level: warning
             fail_on_error: true
-            checkstyle_config: .github/workflows/checkstyle.xml
+            checkstyle_config: .github/workflows/modified_google_checks.xml
 
 
     build:
