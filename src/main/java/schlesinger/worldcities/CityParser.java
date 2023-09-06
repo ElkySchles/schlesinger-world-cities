@@ -23,9 +23,8 @@ public class CityParser {
 
     public CityParser() throws IOException {
 
-        File csvData = new File
-                ("src/main/java/schlesinger" +
-                        "/worldcities/worldcities.csv");
+        File csvData = new File("src/main/java/schlesinger"
+                + "/worldcities/worldcities.csv");
         parser = CSVParser.parse(csvData, Charset.defaultCharset(), CSVFormat.RFC4180);
 
     }
@@ -44,8 +43,8 @@ public class CityParser {
             } else {
                 latit = Double.parseDouble(record.get(2));
                 longit = Double.parseDouble(record.get(3));
-                double distance =
-                        Math.sqrt(((lat - latit) * (lat - latit)) + ((lng - longit) * (lng - longit)));
+                double distance = Math.sqrt(((lat - latit) * (lat - latit))
+                        + ((lng - longit) * (lng - longit)));
                 if (distance < minimumDistance) {
                     minimumDistance = distance;
                     city = record.get(0);
