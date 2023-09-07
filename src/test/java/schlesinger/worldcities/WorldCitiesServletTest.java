@@ -20,7 +20,6 @@ class WorldCitiesServletTest {
         //given
         Gson gson = new Gson();
         CityParser parser = mock();
-        WorldCitiesServlet servlet = new WorldCitiesServlet(parser, gson);
         HttpServletRequest request = mock();
         doReturn("40.7834").when(request).getParameter("lat");
         doReturn("-73.9662").when(request).getParameter("lng");
@@ -28,7 +27,7 @@ class WorldCitiesServletTest {
         doReturn(40.7834).when(parser).getLongitudeInfo();
         doReturn(-73.9662).when(parser).getLatitudeInfo();
 
-
+        WorldCitiesServlet servlet = new WorldCitiesServlet(parser, gson);
         HttpServletResponse response = mock();
         PrintWriter out = mock();
         doReturn(out).when(response).getWriter();
