@@ -1,47 +1,48 @@
-name: Java/Gradle CI
 
-# This file should be located in .github/workflows
-# must copy "modified_google_checks.xml" as well
+  name: Java/Gradle CI
 
-# https://docs.github.com/en/actions/guides/building-and-testing-java-with-gradle
-# https://github.com/dbelyaev/action-checkstyle
+  # This file should be located in .github/workflows
+  # must copy "checkstyle.xml" as well
 
-on: [ pull_request ]
+  # https://docs.github.com/en/actions/guides/building-and-testing-java-with-gradle
+  # https://github.com/dbelyaev/action-checkstyle
 
-jobs:
+  on: [pull_request]
 
-  checkstyle:
-    name: runner / checkstyle
-    runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      contents: write
-      issues: write
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v2
-      - uses: dbelyaev/action-checkstyle@v0.6.1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          level: warning
-          fail_on_error: true
-          checkstyle_config: .github/workflows/modified_google_checks.xml
+  jobs:
+
+    checkstyle:
+      name: runner / checkstyle
+      runs-on: ubuntu-latest
+      permissions:
+        checks: write
+        contents: write
+        issues: write
+        pull-requests: write
+      steps:
+        - uses: actions/checkout@v3
+        - uses: dbelyaev/action-checkstyle@v0.6.1
+          with:
+            github_token: ${{ secrets.github_token }}
+            reporter: github-pr-review
+            level: warning
+            fail_on_error: true
+            checkstyle_config: .github/workflows/modified_google_checks.xml
 
 
-  build:
-    runs-on: ubuntu-latest
+    build:
+      runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          cache: gradle
+      steps:
+        - uses: actions/checkout@v3
+        - name: set up JDK 17
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'temurin'
+            java-version: '17'
+            cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build (and test) with Gradle
-        run: ./gradlew build
+        - name: Grant execute permission for gradlew
+          run: chmod +x gradlew
+        - name: Build (and test) with Gradle
+          run: ./gradlew build
