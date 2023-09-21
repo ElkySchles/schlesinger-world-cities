@@ -6,6 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
@@ -22,10 +23,11 @@ public class CityParser {
 
 
     public CityParser() throws IOException {
+        InputStream inputStream = WorldCitiesServlet.class.getClassLoader()
+                .getResourceAsStream("worldcities.csv");
 
-        File csvData = new File("src/main/java/schlesinger"
-                + "/worldcities/worldcities.csv");
-        parser = CSVParser.parse(csvData, Charset.defaultCharset(), CSVFormat.RFC4180);
+        //File csvData = new File("src/main/resources/worldcities.csv");
+        parser = CSVParser.parse(inputStream, Charset.defaultCharset(), CSVFormat.RFC4180);
 
     }
 
