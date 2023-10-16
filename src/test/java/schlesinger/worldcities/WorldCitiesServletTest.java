@@ -3,16 +3,17 @@ package schlesinger.worldcities;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 class WorldCitiesServletTest {
     @Test
